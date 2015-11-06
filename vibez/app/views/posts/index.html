@@ -1,0 +1,14 @@
+<h4><%= link_to "Create a New Post", new_post_path, class: "new_article" %>
+</h6>
+
+<ul Post>
+  <% @posts.each do |post| %>
+    <li>Song title: <%= post.song_title %></li>
+    <li>Singer: <%= post.artist_name %></li>
+    <li>Vibe: <%= post.vibe %></li>
+    <li>Time created: <%= post.created_at %></li>
+    <li>Time updated: <%= post.updated_at %></li>
+    <li><%= link_to "Please, edit me", post_path(post), class: 'article_title'  %></li>
+    <br><br>
+  <% end %>
+</ul>
