@@ -6,9 +6,16 @@
     <li>Song title: <%= post.song_title %></li>
     <li>Singer: <%= post.artist_name %></li>
     <li>Vibe: <%= post.vibe %></li>
+    <% @users.each do |user| %>
+    <% if user.id == post.user_id %>
+    <li>Author name: <%= user.username %></li>
+    <% end %>
+  <% end %>
     <li>Time created: <%= post.created_at %></li>
     <li>Time updated: <%= post.updated_at %></li>
-    <li><%= link_to "Please, edit me", post_path(post), class: 'article_title'  %></li>
+    <li><%= link_to "Please, edit me", edit_post_path(post)  %></li>
+    <%= link_to "delete", post_path(post), method: :delete, data: {confirm: "Really delete the article?"}
+ %>
     <br><br>
   <% end %>
 </ul>

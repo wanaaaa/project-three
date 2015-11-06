@@ -1,6 +1,10 @@
 class PostsController < ApplicationController
+	def show
+	end
+
 	def index
 		@posts = Post.all
+		@users = User.all
 	end
 
 	def new
@@ -18,7 +22,7 @@ class PostsController < ApplicationController
 	end
 
 	def edit
-		@post = Article.find(params[:id])
+		@post = Post.find(params[:id])
 		@moods = ['happy', 'good', 'euphoric', 'ecstasy', 'so so']
 		@users = User.all.map do |x| 
 			[ x.username, x.id ]
@@ -26,13 +30,20 @@ class PostsController < ApplicationController
 	end
 
 	def update
-	  @post = Article.find(params[:id])
+	  @post = Post.find(params[:id])
 	  @post.update(post_params)
 
-	  flash.notice = "Article '#{@post.title}' Updated!"
+	  flash.notice = "Post Updated!"
 
 
 	  redirect_to posts_path
+	end
+
+	def destroy
+		Post.find(params[:id]).destroy
+		flash[:sucess] = "Post destroyed"
+
+		redirect_to posts_path
 	end
 
 	private
