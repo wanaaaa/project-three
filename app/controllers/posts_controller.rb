@@ -3,6 +3,7 @@ class PostsController < ApplicationController
 	end
 
 	def index
+		
 		@posts = Post.all
 		@users = User.all
 	end
@@ -52,4 +53,5 @@ class PostsController < ApplicationController
 		params.require(:post)
 			.permit(:song_title, :artist_name, :vibe, :like, :user_id)
 	end
+
 end
