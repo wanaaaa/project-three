@@ -3,7 +3,6 @@ class PostsController < ApplicationController
 	end
 
 	def index
-		
 		@posts = Post.all
 		@users = User.all
 	end
@@ -14,12 +13,14 @@ class PostsController < ApplicationController
 		@users = User.all.map do |x|
 			[ x.username, x.id ]
 		end
+
+		render '/newpost', layout: 'angular'
 	end
 
 	def create
 		@post = Post.new(post_params)
 	  @post.save
-	  redirect_to posts_path
+	  redirect_to application_profile_path
 	end
 
 	def edit
@@ -53,5 +54,4 @@ class PostsController < ApplicationController
 		params.require(:post)
 			.permit(:song_title, :artist_name, :vibe, :like, :user_id)
 	end
-
 end

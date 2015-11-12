@@ -12,12 +12,15 @@ class SessionController < ApplicationController
       user.update(session_token: token)
 
       flash[:message] = "Thanks for logging in"
-      redirect_to posts_path
+      redirect_to application_feed_path
     else
       flash[:message] = "Email / Password combo does not exist"
       redirect_to root_path
     end
+  end
 
+  def active_user
+    @active_user = current_user
   end
 
   def destroy
